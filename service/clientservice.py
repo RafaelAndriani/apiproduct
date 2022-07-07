@@ -41,7 +41,8 @@ def has_numbers(inputString):
 
 
 def check_duplicate(cnpj_check):
-    cnpj_list = db.cnpj_list()
-    for cnpj in cnpj_list:
-        if cnpj[0] == cnpj_check:
-            return False
+    if not db.select_by_column(column="cnpj", value=cnpj_check):
+        return True
+    else:
+        return False
+

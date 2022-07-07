@@ -37,7 +37,7 @@ def delete():
     return Response("Deleted", status=201, mimetype="application/json")
 
 
-@app.post("/clients/update")
+@app.put("/clients/update")
 def update():
     data_json = request.json
     update_confirmation = service.update(Client(data_json["cnpj"], data_json["name"], data_json["address"]))

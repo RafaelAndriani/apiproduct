@@ -12,8 +12,11 @@ def select_by_column(column, value):
     cursor.execute(f'select "cnpj", "name", "address" from client where "{column}" = \'{value}\'')
     data = cursor.fetchall()
     count = cursor.rowcount
-    print(count, "Clients founded by:select_by_column")
-    return data
+    if count >= 1:
+        print(count, "Clients founded by:select_by_column")
+        return data
+    else:
+        return False
 
 
 def select_all_clients():
