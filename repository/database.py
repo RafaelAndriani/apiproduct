@@ -53,4 +53,10 @@ def update_client(cnpj, name, address):
     print(count, "Successfully update from database")
 
 
+def cnpj_list():
+    sql = "select cnpj from client;"
+    cursor.execute(sql)
+    data = cursor.fetchall()
+    conn.commit()
+    return data
 

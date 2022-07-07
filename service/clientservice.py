@@ -19,6 +19,8 @@ def find_custom(column, value):
 
 
 def save(client):
+    if not check_duplicate(client.cnpj):
+        return False
     if has_numbers(client.name):
         return False
     db.save_client(client)
@@ -38,3 +40,8 @@ def has_numbers(inputString):
     return any(char.isdigit() for char in inputString)
 
 
+def check_duplicate(cnpj_check):
+    cnpj_list = db.cnpj_list()
+    for cnpj in cnpj_list:
+        if cnpj[0] == cnpj_check:
+            return False

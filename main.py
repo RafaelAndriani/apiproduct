@@ -24,7 +24,7 @@ def save():
     data_json = request.json
     save_confirmation = service.save(Client(data_json["cnpj"], data_json["name"], data_json["address"]))
     if not save_confirmation:
-        return Response("Invalid name", status=400, mimetype="application/json")
+        return Response("Invalid save", status=400, mimetype="application/json")
     return Response("Created", status=201, mimetype="application/json")
 
 
