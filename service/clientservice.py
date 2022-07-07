@@ -26,8 +26,8 @@ def save(client):
 
 
 def delete(cnpj):
-    db.delete_client(cnpj)
-    return True
+    delete_confirmation = db.delete_client(cnpj)
+    return delete_confirmation
 
 
 def update(client):

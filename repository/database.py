@@ -26,7 +26,6 @@ def select_all_clients():
 
 
 def save_client(client):
-    """query sql"""
     sql = f'INSERT INTO public.client (cnpj, \"name\", address) VALUES(\'{client.cnpj}\', \'{client.name}\',' \
           f' \'{client.address}\'); '
     cursor.execute(sql)
@@ -40,7 +39,10 @@ def delete_client(cnpj):
     cursor.execute(sql)
     conn.commit()
     count = cursor.rowcount
-    print(count, "Successfully delete from database")
+    if count >= 1:
+        return True
+    else:
+        return False
 
 
 def update_client(cnpj, name, address):

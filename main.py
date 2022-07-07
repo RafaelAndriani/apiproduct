@@ -32,8 +32,9 @@ def save():
 def delete():
     data_json = request.json
     delete_ok = service.delete(data_json["cnpj"])
-    if delete_ok:
-        return Response("Deleted", status=201, mimetype="application/json")
+    if not delete_ok:
+        return Response("Failed to delete", status=201, mimetype="application/json")
+    return Response("Deleted", status=201, mimetype="application/json")
 
 
 @app.post("/clients/update")
