@@ -4,18 +4,12 @@ from model.client import Client
 
 def find_all():
     columns = db.select_all_clients()
-    client_list = []
-    for c in columns:
-        client_list.append(Client(c[0], c[1], c[2]))
-    return client_list
+    return convert_client_list(columns)
 
 
 def find_custom(column, value):
     columns = db.select_by_column(column, value)
-    client_list = []
-    for c in columns:
-        client_list.append(Client(c[0], c[1], c[2]))
-    return client_list
+    return convert_client_list(columns)
 
 
 def save(client):
@@ -33,7 +27,7 @@ def delete(cnpj):
 
 
 def update(client):
-    db.update_client(cnpj=client.cnpj, name=client.name, address=client.address)
+    return db.update_client(cnpj=client.cnpj, name=client.name, address=client.address)
 
 
 def has_numbers(inputString):
@@ -46,3 +40,9 @@ def check_duplicate(cnpj_check):
     else:
         return False
 
+
+def convert_client_list(columns):
+    client_list = []
+    for c in columns:
+        client_list.append(Client(c[0], c[1], c[2]))
+    return client_list

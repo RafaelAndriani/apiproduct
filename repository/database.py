@@ -42,10 +42,7 @@ def delete_client(cnpj):
     cursor.execute(sql)
     conn.commit()
     count = cursor.rowcount
-    if count >= 1:
-        return True
-    else:
-        return False
+    return count == 1
 
 
 def update_client(cnpj, name, address):
@@ -53,7 +50,7 @@ def update_client(cnpj, name, address):
     cursor.execute(sql)
     conn.commit()
     count = cursor.rowcount
-    print(count, "Successfully update from database")
+    return count == 1
 
 
 def cnpj_list():

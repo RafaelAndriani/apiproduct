@@ -33,17 +33,17 @@ def delete():
     data_json = request.json
     delete_ok = service.delete(data_json["cnpj"])
     if not delete_ok:
-        return Response("Failed to delete", status=201, mimetype="application/json")
-    return Response("Deleted", status=201, mimetype="application/json")
+        return Response("Failed to delete", status=400, mimetype="application/json")
+    return Response("Deleted", status=200, mimetype="application/json")
 
 
-@app.put("/clients/update")
+@app.put("/clients")
 def update():
     data_json = request.json
     update_confirmation = service.update(Client(data_json["cnpj"], data_json["name"], data_json["address"]))
     if not update_confirmation:
         return Response("Invalid update", status=400, mimetype="application/json")
-    return Response("Updated", status=201, mimetype="application/json")
+    return Response("Updated", status=200, mimetype="application/json")
 
 
 if __name__ == "__main__":
